@@ -25,3 +25,9 @@ El capítulo 1 verifica instalación/imports, observación `(39,)`, acción `(28
 `AdroitHandDoor-v1` conserva el término histórico `+0.1 * distancia(palma, manija)`. No se altera la recompensa. Los límites de articulación y los rangos de control son distintos: por ejemplo, `THJ4` tiene límite articular ±1.047 y control ±1.0. Consultar la ficha técnica para la distinción.
 
 Aún no se ha ejecutado entrenamiento ni evaluación final.
+
+## Agente baseline
+
+SAC `MlpPolicy` con red `[256, 256]` ReLU; learning rate `3e-4`, gamma `0.99`, tau `0.005`, batch `256`, replay buffer `500000`, una actualización por paso y entropía automática. Se usa por control continuo y exploración estocástica, como hipótesis a contrastar frente al baseline aleatorio; TD3 y PPO quedan propuestos para los otros dos modelos. Sin normalización, HER, shaping ni curriculum.
+
+Perfiles: `smoke` = 5000 pasos, `learning_starts=500`; `full` = 500000 pasos, `learning_starts=10000`. Evaluación de seguimiento cada 25000; checkpoints cada 50000. Seeds: entrenamiento 42, caracterización 101–110, tuning 201–205, video 301, evaluación final 1001–1010. Selección: éxito, retorno medio, variabilidad y tiempo. El objetivo de 80% es interno.
