@@ -1,0 +1,392 @@
+{
+  "captured_at": "2026-09-11T23:07:38.750950+00:00",
+  "execution_target": "local",
+  "environment_id": "AdroitHandDoor-v1",
+  "env_spec": "EnvSpec(id='AdroitHandDoor-v1', entry_point='gymnasium_robotics.envs.adroit_hand.adroit_door:AdroitHandDoorEnv', reward_threshold=None, nondeterministic=False, max_episode_steps=200, order_enforce=True, disable_env_checker=False, kwargs={'reward_type': 'dense', 'render_mode': 'rgb_array'}, namespace=None, name='AdroitHandDoor', version=1, additional_wrappers=(), vector_entry_point=None)",
+  "versions": {
+    "gymnasium-robotics": "1.3.0",
+    "gymnasium": "1.0.0",
+    "mujoco": "3.1.6",
+    "stable-baselines3": "2.4.1",
+    "torch": "2.5.1",
+    "numpy": "1.26.4"
+  },
+  "hardware": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "machine": "arm64",
+    "python": "3.12.13",
+    "cuda_available": false,
+    "mps_available": true,
+    "device": "cpu"
+  },
+  "max_episode_steps": 200,
+  "frame_skip": 5,
+  "action_space": "Box(-1.0, 1.0, (28,), float32)",
+  "observation_space": "Box(-inf, inf, (39,), float64)",
+  "actuators": [
+    {
+      "name": "A_ARTz",
+      "ctrlrange": [
+        -0.3,
+        0.5
+      ],
+      "joint": "ARTz",
+      "joint_range": [
+        -0.3,
+        0.5
+      ]
+    },
+    {
+      "name": "A_ARRx",
+      "ctrlrange": [
+        -0.75,
+        0.75
+      ],
+      "joint": "ARRx",
+      "joint_range": [
+        -0.75,
+        0.75
+      ]
+    },
+    {
+      "name": "A_ARRy",
+      "ctrlrange": [
+        -0.75,
+        0.75
+      ],
+      "joint": "ARRy",
+      "joint_range": [
+        -0.75,
+        0.75
+      ]
+    },
+    {
+      "name": "A_ARRz",
+      "ctrlrange": [
+        -1.0,
+        2.0
+      ],
+      "joint": "ARRz",
+      "joint_range": [
+        -1.0,
+        2.0
+      ]
+    },
+    {
+      "name": "A_WRJ1",
+      "ctrlrange": [
+        -0.524,
+        0.175
+      ],
+      "joint": "WRJ1",
+      "joint_range": [
+        -0.524,
+        0.175
+      ]
+    },
+    {
+      "name": "A_WRJ0",
+      "ctrlrange": [
+        -0.79,
+        0.61
+      ],
+      "joint": "WRJ0",
+      "joint_range": [
+        -0.785,
+        0.611
+      ]
+    },
+    {
+      "name": "A_FFJ3",
+      "ctrlrange": [
+        -0.44,
+        0.44
+      ],
+      "joint": "FFJ3",
+      "joint_range": [
+        -0.436,
+        0.436
+      ]
+    },
+    {
+      "name": "A_FFJ2",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "FFJ2",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_FFJ1",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "FFJ1",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_FFJ0",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "FFJ0",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_MFJ3",
+      "ctrlrange": [
+        -0.44,
+        0.44
+      ],
+      "joint": "MFJ3",
+      "joint_range": [
+        -0.436,
+        0.436
+      ]
+    },
+    {
+      "name": "A_MFJ2",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "MFJ2",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_MFJ1",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "MFJ1",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_MFJ0",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "MFJ0",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_RFJ3",
+      "ctrlrange": [
+        -0.44,
+        0.44
+      ],
+      "joint": "RFJ3",
+      "joint_range": [
+        -0.436,
+        0.436
+      ]
+    },
+    {
+      "name": "A_RFJ2",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "RFJ2",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_RFJ1",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "RFJ1",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_RFJ0",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "RFJ0",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_LFJ4",
+      "ctrlrange": [
+        0.0,
+        0.7
+      ],
+      "joint": "LFJ4",
+      "joint_range": [
+        0.0,
+        0.698
+      ]
+    },
+    {
+      "name": "A_LFJ3",
+      "ctrlrange": [
+        -0.44,
+        0.44
+      ],
+      "joint": "LFJ3",
+      "joint_range": [
+        -0.436,
+        0.436
+      ]
+    },
+    {
+      "name": "A_LFJ2",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "LFJ2",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_LFJ1",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "LFJ1",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_LFJ0",
+      "ctrlrange": [
+        0.0,
+        1.6
+      ],
+      "joint": "LFJ0",
+      "joint_range": [
+        0.0,
+        1.571
+      ]
+    },
+    {
+      "name": "A_THJ4",
+      "ctrlrange": [
+        -1.0,
+        1.0
+      ],
+      "joint": "THJ4",
+      "joint_range": [
+        -1.047,
+        1.047
+      ]
+    },
+    {
+      "name": "A_THJ3",
+      "ctrlrange": [
+        0.0,
+        1.3
+      ],
+      "joint": "THJ3",
+      "joint_range": [
+        0.0,
+        1.309
+      ]
+    },
+    {
+      "name": "A_THJ2",
+      "ctrlrange": [
+        -0.26,
+        0.26
+      ],
+      "joint": "THJ2",
+      "joint_range": [
+        -0.262,
+        0.262
+      ]
+    },
+    {
+      "name": "A_THJ1",
+      "ctrlrange": [
+        -0.52,
+        0.52
+      ],
+      "joint": "THJ1",
+      "joint_range": [
+        -0.524,
+        0.524
+      ]
+    },
+    {
+      "name": "A_THJ0",
+      "ctrlrange": [
+        -1.571,
+        0.0
+      ],
+      "joint": "THJ0",
+      "joint_range": [
+        -1.571,
+        0.0
+      ]
+    }
+  ],
+  "reward_distance_coefficient": 0.1,
+  "reward_probe": [
+    {
+      "step": 1,
+      "reward": -0.22400552140669028,
+      "reconstructed_reward": -0.22400552140669025
+    },
+    {
+      "step": 2,
+      "reward": -0.23764581091013343,
+      "reconstructed_reward": -0.23764581091013343
+    },
+    {
+      "step": 3,
+      "reward": -0.22789730282899423,
+      "reconstructed_reward": -0.2278973028289942
+    }
+  ],
+  "reward_source_sha256": "ec847fbf3f4b8a3464dc2e444eb1864def1c2ae038b0d162abf4fa5438fb8ef8",
+  "validated_steps": 200,
+  "truncated_at": 200,
+  "render_shape": [
+    480,
+    480,
+    3
+  ],
+  "range_note": "Joint limits and actuator control ranges are distinct; no physics modifications.",
+  "closed": true
+}
