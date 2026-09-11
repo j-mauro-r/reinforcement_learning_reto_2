@@ -29,7 +29,7 @@ The complete challenge must use at least three distinct allowed RL algorithms an
 
 - No direct changes to `main`.
 - Every substantive change starts on a dedicated branch and reaches `main` through a Pull Request.
-- Use Deep Work Plan for substantive engineering work. DWP v4 is Lite-first: create a Lite plan by default and promote to Full only when the scope requires detailed task files.
+- Use Deep Work Plan for substantive engineering work. DWP v4 supports Lite and Full plans, but development of each of the three RL models must use an explicit **Full** plan because `lineamientos-transversales.md` requires detailed task contracts. Lite remains appropriate for bounded repository maintenance that does not fall under that model-development rule.
 - `.dwp/` is an operational, gitignored workspace. Do not commit plans or execution state.
 - Permanent decisions discovered during a DWP execution must be reflected in tracked documentation when they remain relevant after the plan ends.
 - Execute one bounded task at a time; validate before advancing.
@@ -60,13 +60,13 @@ Supported repository aliases:
 - `#dwp-resume`
 - `#dwp-verify`
 
-These aliases are thin delegators. The installed Deep Work Plan skill is authoritative for lifecycle behavior.
+These aliases are thin delegators. The installed Deep Work Plan skill is authoritative for lifecycle behavior, while `lineamientos-transversales.md` remains authoritative for project-specific plan requirements.
 
 ### DWP lifecycle
 
 - Create materializes a plan under `.dwp/plans/PLAN_<slug>/`.
-- Lite is the default compact executable representation.
-- Full is used when the scope cannot be represented safely as compact task records.
+- DWP v4 is Lite-first in general; this repository explicitly requests **Full** for substantive development of `1-AdroitHandDoor`, `2-FetchReachDense` and `3-HandReachDense`.
+- Lite may be used for small bounded maintenance when its compact contract is sufficient and no transversal rule requires Full detail.
 - Promotion Lite → Full preserves stable task identity and completed evidence.
 - Guided creation requires approval before execution; `trust`/`auto` may pre-approve when explicitly requested.
 - Never execute a pending proposal or a plan with an unresolved promotion state.
