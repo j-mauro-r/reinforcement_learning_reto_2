@@ -6,6 +6,14 @@ The repository pins the **Deep Work Plan skill v4.0.0**. The release changed pla
 
 The DWP engine is installed per developer/agent environment; it is not vendored into this repository. Repository-local `.agents/commands/` files are thin aliases so lifecycle behavior remains owned by the installed skill.
 
+## Repository policy on Lite vs Full
+
+DWP v4 is Lite-first in general. However, `lineamientos-transversales.md` has higher precedence for this project and requires detailed task contracts for model development. Therefore:
+
+- development of `1-AdroitHandDoor`, `2-FetchReachDense` and `3-HandReachDense` must be created as explicit **Full** plans;
+- Lite plans remain available for bounded maintenance/documentation work when no transversal rule requires Full detail;
+- if a Lite maintenance plan grows materially, promote it to Full with `#dwp-refine` before continuing.
+
 ## Install / upgrade
 
 ```bash
@@ -34,14 +42,21 @@ Use these repository aliases in supported coding agents:
 #dwp-verify
 ```
 
-## Lite-first lifecycle
+For a model implementation, explicitly request Full, for example:
 
-- A new plan is represented as **Lite** when compact task contracts are sufficient.
-- A plan becomes **Full** only when detailed per-task files are needed.
+```text
+#dwp-create full Implementar baseline SAC para AdroitHandDoor
+```
+
+## DWP v4 lifecycle
+
+- Lite is the compact default representation in DWP v4 when permitted by repository policy.
+- Full uses detailed per-task files and is mandatory here for substantive model development.
 - Both representations must remain executable and verifiable.
 - Scope, acceptance criteria and validation gates are mandatory regardless of representation.
 - Creation/promotion never executes product work.
 - Guided plans require approval before execution; trust/auto behavior is used only when explicitly selected.
+- A plan with pending approval or unresolved promotion is not executable.
 
 ## Operational workspace
 
