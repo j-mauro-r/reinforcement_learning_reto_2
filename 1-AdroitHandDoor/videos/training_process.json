@@ -1,0 +1,12 @@
+{
+  "model": "1-AdroitHandDoor/runs/20260911T231624899082Z_full/checkpoints/20260911T231624899082Z_full_250000_steps.zip",
+  "model_sha256": "8052d8195dcc1bb3c301875417cad6734adf8415a9eacb01a8847695a680ddda",
+  "title": "Training Process",
+  "seed": 301,
+  "episodes": 1,
+  "frames": 200,
+  "fps": 30,
+  "model_timesteps": 250000,
+  "learning": false,
+  "mode": "intermediate"
+}

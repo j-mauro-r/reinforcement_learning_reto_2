@@ -191,9 +191,13 @@ Por tanto:
 | 26 | `A_THJ1` / `THJ1` | Pulgar MCP flex/ext | `[-1,1]` | `[-0.52, 0.52] rad` aprox. |
 | 27 | `A_THJ0` / `THJ0` | Pulgar IP flex/ext | `[-1,1]` | `[-1.571, 0] rad` |
 
-### 4.3 Discrepancia documental que debe validarse
+### 4.3 Rangos articulares y rangos de control
 
 La tabla textual de la documentación histórica de Adroit Door presenta para `ARRx` y `ARRy` rangos más estrechos que el XML de `v1`. Sin embargo, el código de ejecución escala la acción usando `model.actuator_ctrlrange`, y el XML de `v1.3.0` define ambos actuadores en `[-0.75, 0.75]`.
+
+**Verificación local (Gymnasium Robotics 1.3.0 / MuJoCo 3.1.6):** la columna «Rango físico de referencia» de §4.2 contiene principalmente límites articulares (`model.jnt_range`), que no siempre coinciden con `model.actuator_ctrlrange`. Por ejemplo, `THJ4` tiene límite articular `[-1.047, 1.047]`, pero su actuador `A_THJ4` usa `[-1.0, 1.0]`; `FFJ2` tiene límite articular `[0, 1.571]`, pero `A_FFJ2` usa `[0, 1.6]`. No son cambios de física ni de versión: ambos valores coexisten en los XML upstream. La transformación de acciones usa exclusivamente el rango de control. El registro completo por joint/actuador queda en `results/runtime_contract.json`.
+
+Fuentes: [límites articulares](https://github.com/Farama-Foundation/Gymnasium-Robotics/blob/v1.3.0/gymnasium_robotics/envs/assets/adroit_hand/adroit_model.xml) y [actuadores y defaults](https://github.com/Farama-Foundation/Gymnasium-Robotics/blob/v1.3.0/gymnasium_robotics/envs/assets/adroit_hand/adroit_assets.xml).
 
 **Regla para implementación:** antes del entrenamiento se debe inspeccionar el ambiente realmente instalado y registrar `env.unwrapped.model.actuator_ctrlrange`. El valor observado en runtime es el contrato efectivo de esa instalación.
 

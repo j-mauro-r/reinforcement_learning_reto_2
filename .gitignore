@@ -15,3 +15,6 @@ venv/
 .env.*
 !.env.example
 .DS_Store
+
+# Adroit candidate runs, checkpoints and replay buffers (not canonical delivery)
+/1-AdroitHandDoor/runs/
