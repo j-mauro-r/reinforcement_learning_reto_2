@@ -32,3 +32,11 @@ Seeds: entrenamiento 42, caracterización aleatoria 101–110, tuning 201–205,
 `train_model(profile)` es el único pipeline para smoke/full. Cada corrida guarda configuración, versiones, hardware, cronómetro, Monitor CSV, evaluaciones de tuning, `candidate.zip` y checkpoints por timestep bajo `runs/<run_id>/` (ignorado). Un smoke comprueba pesos actualizados, save/reload, evaluación sin aprendizaje y video MP4 antes de habilitar full. Evaluación cada 5.000 pasos; checkpoint cada 10.000 y al terminar; replay más reciente conservado para recuperación. Los checkpoints periódicos son capturados durante rollout; reiniciar entrenamiento no promete equivalencia bit a bit con una corrida ininterrumpida.
 
 El artefacto canónico se reserva para la selección final; los candidatos no se presentan como modelo entregable. El video usa 25 FPS, coherente con el tiempo físico de Fetch (50 pasos = 2 segundos).
+
+## Modelo seleccionado
+
+Baseline de 100.000 pasos, run `20260912T005116707634Z_full`, Apple M2 Pro / 32 GiB, CPU (un thread). Tiempo de aprendizaje con callbacks: 345,82 s. Las diez seeds de selección (201–210) dieron 100% success_final, retorno −0,847 ± 0,151 (desviación muestral), permanencia 96,8% y distancia final media 14,2 mm. No hicieron falta corridas adicionales. Estas métricas son de selección, no la evaluación final.
+
+`models/fetch_reach_td3.zip` es el único modelo canónico. Cargar con `TD3.load(path, device="cpu")` y usar `predict(obs, deterministic=True)`. Conserva todos los pesos del candidato; los estados aprendidos de los optimizadores y el replay no se exportan. Los optimizadores vacíos permiten usar el cargador estándar. Para continuar una corrida, usar el checkpoint y replay de `runs/`.
+
+La metadata adyacente registra procedencia, configuración, selección y SHA-256. Cargar solo artefactos propios/confiables; la serialización SB3 incluye metadatos Python. Un checksum verifica integridad, no autenticidad del origen.
