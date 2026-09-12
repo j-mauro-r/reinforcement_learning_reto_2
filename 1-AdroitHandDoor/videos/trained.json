@@ -1,0 +1,12 @@
+{
+  "model": "1-AdroitHandDoor/models/adroit_hand_door_sac.zip",
+  "model_sha256": "e153ac1b165aab3805e1e1ba360048d3a2c0b4f0a536dc516eb8e16446f4523c",
+  "title": "Trained Agent",
+  "seed": 301,
+  "episodes": 1,
+  "frames": 200,
+  "fps": 30,
+  "model_timesteps": 450000,
+  "learning": false,
+  "mode": "final"
+}

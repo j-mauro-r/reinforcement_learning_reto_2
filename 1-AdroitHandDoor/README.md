@@ -53,3 +53,10 @@ Artefacto único: `models/adroit_hand_door_sac.zip`, con `models/adroit_hand_doo
 Sobre 10 episodios reservados (seeds 1001–1010), el artefacto seleccionado obtuvo **1704.81 ± 1202.73** de retorno y **70% de éxito (7/10)**. La política aleatoria obtuvo **−45.84 ± 0.84** y **0% de éxito**, con iguales seeds y horizonte. Las desviaciones son poblacionales (`ddof=0`), no intervalos de confianza. Estos resultados no se utilizaron para volver a seleccionar o ajustar el modelo.
 
 Las tres figuras están en `results/figures/` y visibles en el notebook. `results/evaluation.csv`, `results/random_baseline_final.csv` y `results/metrics.json` permiten comprobar las métricas. La entrega muestra una mejora clara, con fallos en tres episodios; no se declara solución infalible ni estabilidad temporal del entrenamiento. El informe académico del capítulo 6 sigue pendiente.
+
+## Videos
+
+- `videos/training_process.mp4`: checkpoint real de 250000 pasos, título `Training Process`.
+- `videos/trained.mp4`: modelo canónico de 450000 pasos, título `Trained Agent`.
+
+Ambos usan la seed 301, muestran retorno acumulado y contienen 200 frames a 30 FPS (6.67 s). Los JSON laterales documentan fuente, SHA-256 y modo. Se verificaron los overlays en frames intermedios/finales y la decodificación completa con FFmpeg. Cuando `ffprobe` no está disponible, el notebook comprueba duración, FPS y conteo con ImageIO y ejecuta el FFmpeg distribuido por `imageio-ffmpeg` sobre todos los frames.
