@@ -39,3 +39,11 @@ Cambiar únicamente `CONFIG['profile']` a `full` y ejecutar las celdas en orden 
 El candidato todavía no se promueve al nombre canónico. Los checkpoints intermedios incluyen run_id y timestep. `latest_replay_buffer.pkl` corresponde al checkpoint más reciente del mismo directorio; permite continuar aprendizaje junto con ese ZIP usando `SAC.load`, `load_replay_buffer` y `learn(..., reset_num_timesteps=False)`. Una recuperación debe identificarse y documentarse como tal; no se afirma reproducción bit a bit de un proceso interrumpido.
 
 Los candidatos/checkpoints conservan el estado estándar de entrenamiento de SB3. La promoción final preparará una exportación de política sin optimizer ni replay buffer y verificará su recarga e igualdad de acciones. Los MP4 de smoke comprueban el render y overlay; no son los videos finales de entrega.
+
+## Modelo seleccionado
+
+La corrida `20260911T231624899082Z_full` completó 500000 pasos en 2820.04 segundos (47.0 minutos). La selección compara checkpoints guardados con las mismas cinco seeds de tuning. Se eligió el checkpoint de **450000 pasos**: retorno medio **1492.84 ± 887.73**, éxito **80%**. El candidato posterior a 500000 pasos obtuvo 40% al recargarlo. La curva es temporalmente inestable; no se afirma convergencia estable. Se omitieron corridas adicionales al disponer de un checkpoint que alcanza el objetivo interno. Las seeds finales no participaron en esta decisión.
+
+Artefacto único: `models/adroit_hand_door_sac.zip`, con `models/adroit_hand_door_sac.metadata.json`. Es una exportación de inferencia sin replay buffer ni estados de optimizer. **Se carga con `InferenceSAC.load`**, usando la pequeña subclase definida en el notebook; `SAC.load` espera estados de entrenamiento que esta exportación excluye. Las acciones y los resultados de los cinco episodios se verificaron idénticos frente al checkpoint original. Para reanudar entrenamiento se usan los checkpoints estándar de `runs/`, no el artefacto canónico.
+
+`results/checkpoint_selection.csv` conserva la comparación, `results/experiments.csv` registra la única corrida y `results/baseline_*` preserva logs y metadatos. Los 500000 pasos y el tiempo completo describen el costo de la corrida; los 450000 pasos identifican exactamente los pesos entregados.
