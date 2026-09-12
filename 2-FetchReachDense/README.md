@@ -20,3 +20,9 @@ Abrir el notebook con ese intérprete y ejecutar en orden. `CONFIG` concentra pe
 El capítulo 1 valida imports, shapes, reward/success, TimeLimit, goal sampling, gripper bloqueado y render. Guarda `results/runtime_contract.json`. MuJoCo 3.13.0 falló en `set_joint_qpos` durante creación; se eligió 3.2.7 tras el probe real, conservando 20 substeps, timestep 0.002 y control a 25 Hz.
 
 Antes del entrenamiento full se requieren smoke de 5.000 pasos, save/reload, evaluación y MP4. Los capítulos siguientes incorporarán esos gates de forma secuencial. Validación adicional: `git diff --check`.
+
+## Agente y evaluación
+
+TD3 usa dos críticos, actor retrasado (`policy_delay=2`) y ruido objetivo 0.2, recortado a 0.5. MLP `[400, 300]` con ReLU; exploración gaussiana sigma 0.1. Learning rate 0.001, gamma 0.99, tau 0.005, batch 256, buffer 200.000. El perfil smoke tiene 5.000 pasos y warmup 500; full 100.000 y warmup 1.000. La configuración ejecutable vive solo en el notebook.
+
+Seeds: entrenamiento 42, caracterización aleatoria 101–110, tuning 201–205, evaluación final reservada 1001–1010. Selección por éxito al final del episodio, luego retorno, permanencia, variabilidad y tiempo. Fuente de implementación: [SB3 TD3](https://stable-baselines3.readthedocs.io/en/master/modules/td3.html).
