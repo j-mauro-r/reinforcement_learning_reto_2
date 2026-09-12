@@ -26,3 +26,9 @@ Antes del entrenamiento full se requieren smoke de 5.000 pasos, save/reload, eva
 TD3 usa dos críticos, actor retrasado (`policy_delay=2`) y ruido objetivo 0.2, recortado a 0.5. MLP `[400, 300]` con ReLU; exploración gaussiana sigma 0.1. Learning rate 0.001, gamma 0.99, tau 0.005, batch 256, buffer 200.000. El perfil smoke tiene 5.000 pasos y warmup 500; full 100.000 y warmup 1.000. La configuración ejecutable vive solo en el notebook.
 
 Seeds: entrenamiento 42, caracterización aleatoria 101–110, tuning 201–205, evaluación final reservada 1001–1010. Selección por éxito al final del episodio, luego retorno, permanencia, variabilidad y tiempo. Fuente de implementación: [SB3 TD3](https://stable-baselines3.readthedocs.io/en/master/modules/td3.html).
+
+## Entrenamiento y persistencia
+
+`train_model(profile)` es el único pipeline para smoke/full. Cada corrida guarda configuración, versiones, hardware, cronómetro, Monitor CSV, evaluaciones de tuning, `candidate.zip` y checkpoints por timestep bajo `runs/<run_id>/` (ignorado). Un smoke comprueba pesos actualizados, save/reload, evaluación sin aprendizaje y video MP4 antes de habilitar full. Evaluación cada 5.000 pasos; checkpoint cada 10.000 y al terminar; replay más reciente conservado para recuperación. Los checkpoints periódicos son capturados durante rollout; reiniciar entrenamiento no promete equivalencia bit a bit con una corrida ininterrumpida.
+
+El artefacto canónico se reserva para la selección final; los candidatos no se presentan como modelo entregable. El video usa 25 FPS, coherente con el tiempo físico de Fetch (50 pasos = 2 segundos).
