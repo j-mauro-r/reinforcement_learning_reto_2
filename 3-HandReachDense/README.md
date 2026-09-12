@@ -24,3 +24,11 @@ El probe valida imports, make/reset/step/render/close, shapes, física, reward/s
 PPO + MultiInputPolicy conserva el Dict, con actor/value `[256,256]`, ReLU, learning rate 3e-4, rollout 2048, batch 256, 10 epochs y clipping 0.2. La exploración es la política estocástica de PPO, sin action noise externo. Se elige CPU con un thread. La configuración ejecutable es `CONFIG` del notebook.
 
 Entrenamiento 42; baseline aleatorio 101–120 (20 episodios); tuning/selección 201–210; finales reservadas 1001–1010; diagnóstico runtime 5001–5100. `success_final` se fija antes de entrenar. Se conserva la estrategia global SAC/TD3/PPO y no se añade normalización, shaping ni extractores personalizados.
+
+## Pipeline y validación
+
+`train_model(profile)` comparte código smoke/full; smoke solicita 8192 pasos y full 1.000.000. PPO completa rollouts de 2048: el total real puede superar ligeramente el solicitado. Se registran ambos y las épocas de optimización (el contador `_n_updates` de PPO cuenta épocas, no minibatches).
+
+Cada run guarda Monitor, métricas PPO (KL aproximado, clip fraction, entropy/value loss y std), configuración, cronómetro y candidato. Evaluación cada 50k, checkpoints cada 100k y al terminar. Checkpoints periódicos ocurren durante rollout y son para recuperación aproximada; no prometen reproducir una ejecución ininterrumpida bit a bit. Los candidatos permanecen en `runs/` ignorado. El ZIP canónico se reserva hasta Task 7.
+
+Gates previos a full: runtime, smoke, pesos finitos/actualizados, recarga en entorno nuevo, evaluación sin cambios de pesos y MP4 con overlay. `git diff --check` valida whitespace.

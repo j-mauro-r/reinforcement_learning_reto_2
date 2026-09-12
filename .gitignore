@@ -21,3 +21,6 @@ venv/
 
 # Fetch candidate runs, checkpoints and replay buffers (not canonical delivery)
 /2-FetchReachDense/runs/
+
+# Hand candidate runs and checkpoints (not canonical delivery)
+/3-HandReachDense/runs/
