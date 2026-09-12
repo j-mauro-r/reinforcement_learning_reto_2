@@ -137,6 +137,39 @@
   "success_definition": "success_final",
   "selection_decision": "Baseline meets target on ten tuning seeds and last five monitoring evaluations; no additional tuning runs.",
   "artifact_format": "SB3 TD3 ZIP; policy weights, empty optimizer states, no replay",
-  "evaluation": null,
-  "colab_verified": false
+  "evaluation": {
+    "training_seconds": 345.82092983399343,
+    "evaluation_return_mean": -0.8033986122599928,
+    "evaluation_return_std": 0.19483467754266048,
+    "success_rate": 1.0,
+    "success_definition": "success_final",
+    "episodes": 10,
+    "std_ddof": 1,
+    "auxiliary": {
+      "success_any_rate": 1.0,
+      "success_fraction_mean": 0.966,
+      "final_distance_mean": 0.012642361265284886
+    },
+    "random": {
+      "return_mean": -9.53185255637219,
+      "return_std": 3.1793532257131862,
+      "success_rate": 0.0,
+      "final_distance_mean": 0.23177572165218097
+    },
+    "run_id": "20260912T005116707634Z_full",
+    "model_sha256": "e17aca6bdae1edd0af6eab0ab998e420025173ac54efa9f3796034d2c99475a1"
+  },
+  "colab_verified": false,
+  "final_evaluation_seeds": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010
+  ]
 }
