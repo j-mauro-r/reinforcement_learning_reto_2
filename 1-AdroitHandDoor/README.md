@@ -47,3 +47,9 @@ La corrida `20260911T231624899082Z_full` completó 500000 pasos en 2820.04 segun
 Artefacto único: `models/adroit_hand_door_sac.zip`, con `models/adroit_hand_door_sac.metadata.json`. Es una exportación de inferencia sin replay buffer ni estados de optimizer. **Se carga con `InferenceSAC.load`**, usando la pequeña subclase definida en el notebook; `SAC.load` espera estados de entrenamiento que esta exportación excluye. Las acciones y los resultados de los cinco episodios se verificaron idénticos frente al checkpoint original. Para reanudar entrenamiento se usan los checkpoints estándar de `runs/`, no el artefacto canónico.
 
 `results/checkpoint_selection.csv` conserva la comparación, `results/experiments.csv` registra la única corrida y `results/baseline_*` preserva logs y metadatos. Los 500000 pasos y el tiempo completo describen el costo de la corrida; los 450000 pasos identifican exactamente los pesos entregados.
+
+## Evaluación final
+
+Sobre 10 episodios reservados (seeds 1001–1010), el artefacto seleccionado obtuvo **1704.81 ± 1202.73** de retorno y **70% de éxito (7/10)**. La política aleatoria obtuvo **−45.84 ± 0.84** y **0% de éxito**, con iguales seeds y horizonte. Las desviaciones son poblacionales (`ddof=0`), no intervalos de confianza. Estos resultados no se utilizaron para volver a seleccionar o ajustar el modelo.
+
+Las tres figuras están en `results/figures/` y visibles en el notebook. `results/evaluation.csv`, `results/random_baseline_final.csv` y `results/metrics.json` permiten comprobar las métricas. La entrega muestra una mejora clara, con fallos en tres episodios; no se declara solución infalible ni estabilidad temporal del entrenamiento. El informe académico del capítulo 6 sigue pendiente.
