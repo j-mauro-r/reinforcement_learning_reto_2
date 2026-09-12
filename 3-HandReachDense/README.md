@@ -32,3 +32,21 @@ Entrenamiento 42; baseline aleatorio 101–120 (20 episodios); tuning/selección
 Cada run guarda Monitor, métricas PPO (KL aproximado, clip fraction, entropy/value loss y std), configuración, cronómetro y candidato. Evaluación cada 50k, checkpoints cada 100k y al terminar. Checkpoints periódicos ocurren durante rollout y son para recuperación aproximada; no prometen reproducir una ejecución ininterrumpida bit a bit. Los candidatos permanecen en `runs/` ignorado. El ZIP canónico se reserva hasta Task 7.
 
 Gates previos a full: runtime, smoke, pesos finitos/actualizados, recarga en entorno nuevo, evaluación sin cambios de pesos y MP4 con overlay. `git diff --check` valida whitespace.
+
+## Estado de ejecución: bloqueado en selección
+
+Tasks 1–6 completados; Task 7 pendiente tras baseline y los dos ajustes permitidos. Los tres runs terminaron 1.001.472 pasos y pasaron persistencia/evaluación técnica, pero todos obtuvieron **0/10 success_final** en las mismas seeds de selección 201–210.
+
+| Experimento | Cambio | Tiempo | Retorno medio ± DE | Distancia global final |
+| --- | --- | --- | --- | --- |
+| Baseline | configuración original | 767,22 s | −3,766 ± 0,398 | 74,9 mm |
+| Ajuste 1 | LR 3e-5; clipping 0.1 | 776,04 s | −3,506 ± 0,346 | 70,1 mm |
+| Ajuste 2 | ajuste 1 + log_std_init −1 | 777,75 s | −3,404 ± 0,328 | 67,5 mm |
+
+Son resultados de **selección**, no evaluación final. La tarea requiere norma global menor que 10 mm y el plan pide al menos 80% de éxito para promover candidato. No existe modelo canónico ni videos finales; capítulos 4–5 quedan pendientes. Los MP4 smoke verifican únicamente el pipeline de render.
+
+`results/experiments.csv`, `selection_status.json` y `experiment_*` preservan comparaciones y diagnósticos. Cada candidato local se carga con `PPO.load(MODEL_ROOT / "runs" / run_id / "candidate.zip", device="cpu")`. Los checkpoints siguen ignorados; no son entrega final. Cargar solo archivos propios/confiables.
+
+El último ajuste se estancó cerca de 0.067–0.068 m, sin evidencia suficiente para duplicar su presupuesto. Se necesita refinar Task 7 antes de más corridas o técnicas como normalización de observaciones. Mantener PPO, la separación de seeds y el criterio físico original. Una causa posible a investigar es la escala heterogénea de posiciones, velocidades y goals; estos experimentos no demuestran por sí solos esa causalidad.
+
+El notebook sigue siendo un trabajo en curso: `full` reproduce las tres corridas actuales, con coste total medido de aproximadamente 38,7 minutos de entrenamiento; `smoke` ejecuta solo los gates cortos. Seeds finales 1001–1010 intactas. Colab y capítulo 6 siguen pendientes.
