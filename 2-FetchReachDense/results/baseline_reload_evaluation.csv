@@ -1,0 +1,3 @@
+seed,episode_return,episode_length,success_any,success_final,success_fraction,time_to_first_success,min_distance,final_distance
+401,-1.1261288652469281,50,True,True,0.96,3.0,0.01809693658581169,0.019545443554258874
+402,-0.6783786059944888,50,True,True,0.96,3.0,0.010737965235005805,0.010737965235005805

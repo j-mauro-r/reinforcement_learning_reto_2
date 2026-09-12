@@ -1,0 +1,175 @@
+{
+  "run_id": "20260912T005116707634Z_full",
+  "profile": "full",
+  "environment_id": "FetchReachDense-v4",
+  "algorithm": "TD3",
+  "policy": "MultiInputPolicy",
+  "seed": 42,
+  "total_timesteps": 100000,
+  "gradient_updates": 99000,
+  "configuration": {
+    "env_id": "FetchReachDense-v4",
+    "algorithm": "TD3",
+    "policy": "MultiInputPolicy",
+    "profile": "full",
+    "train_seed": 42,
+    "device": "cpu",
+    "torch_threads": 1,
+    "baseline_seeds": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110
+    ],
+    "tuning_seeds": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "final_eval_seeds": [
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010
+    ],
+    "reload_seeds": [
+      401,
+      402
+    ],
+    "video_seed": 301,
+    "video_fps": 25,
+    "video_size": 480,
+    "success_definition": "success_final",
+    "target_success": 0.9,
+    "eval_freq": 5000,
+    "checkpoint_freq": 10000,
+    "rolling_window": 50,
+    "profiles": {
+      "smoke": {
+        "timesteps": 5000,
+        "learning_starts": 500
+      },
+      "full": {
+        "timesteps": 100000,
+        "learning_starts": 1000
+      }
+    },
+    "td3": {
+      "learning_rate": 0.001,
+      "gamma": 0.99,
+      "tau": 0.005,
+      "batch_size": 256,
+      "buffer_size": 200000,
+      "train_freq": 1,
+      "gradient_steps": 1,
+      "policy_delay": 2,
+      "target_policy_noise": 0.2,
+      "target_noise_clip": 0.5
+    },
+    "action_noise_sigma": 0.1,
+    "net_arch": [
+      400,
+      300
+    ]
+  },
+  "versions": {
+    "gymnasium-robotics": "1.4.2",
+    "gymnasium": "1.3.0",
+    "mujoco": "3.2.7",
+    "stable-baselines3": "2.9.0",
+    "torch": "2.14.0",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.2",
+    "pillow": "12.3.0",
+    "imageio": "2.37.4",
+    "imageio-ffmpeg": "0.6.0"
+  },
+  "python": "3.12.13",
+  "hardware": "macOS-26.6.2-arm64-arm-64bit arm64",
+  "device": "cpu",
+  "started_at": "2026-09-12T00:51:16.741195+00:00",
+  "ended_at": "2026-09-12T00:57:02.702314+00:00",
+  "training_seconds": 345.82092983399343,
+  "candidate_sha256": "e153eac9ad58ca1052aca026e8f4b550090a24e6d9659e41b3495da8946cd696",
+  "artifact": "models/fetch_reach_td3.zip",
+  "sha256": "e17aca6bdae1edd0af6eab0ab998e420025173ac54efa9f3796034d2c99475a1",
+  "source_candidate": "runs/20260912T005116707634Z_full/candidate.zip",
+  "source_candidate_sha256": "e153eac9ad58ca1052aca026e8f4b550090a24e6d9659e41b3495da8946cd696",
+  "selection_seeds": [
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210
+  ],
+  "selection_metrics": {
+    "run_id": "20260912T005116707634Z_full",
+    "delta_vs_baseline": "none",
+    "seed": 42,
+    "timesteps": 100000,
+    "training_seconds": 345.82092983399343,
+    "reward_mean": -0.8470509205628407,
+    "reward_std": 0.1514206664587485,
+    "success_final_rate": 1.0,
+    "success_fraction_mean": 0.968,
+    "final_distance_mean": 0.014162046037264831
+  },
+  "success_definition": "success_final",
+  "selection_decision": "Baseline meets target on ten tuning seeds and last five monitoring evaluations; no additional tuning runs.",
+  "artifact_format": "SB3 TD3 ZIP; policy weights, empty optimizer states, no replay",
+  "evaluation": {
+    "training_seconds": 345.82092983399343,
+    "evaluation_return_mean": -0.8033986122599928,
+    "evaluation_return_std": 0.19483467754266048,
+    "success_rate": 1.0,
+    "success_definition": "success_final",
+    "episodes": 10,
+    "std_ddof": 1,
+    "auxiliary": {
+      "success_any_rate": 1.0,
+      "success_fraction_mean": 0.966,
+      "final_distance_mean": 0.012642361265284886
+    },
+    "random": {
+      "return_mean": -9.53185255637219,
+      "return_std": 3.1793532257131862,
+      "success_rate": 0.0,
+      "final_distance_mean": 0.23177572165218097
+    },
+    "run_id": "20260912T005116707634Z_full",
+    "model_sha256": "e17aca6bdae1edd0af6eab0ab998e420025173ac54efa9f3796034d2c99475a1"
+  },
+  "colab_verified": false,
+  "final_evaluation_seeds": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010
+  ]
+}
