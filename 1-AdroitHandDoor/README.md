@@ -60,3 +60,15 @@ Las tres figuras están en `results/figures/` y visibles en el notebook. `result
 - `videos/trained.mp4`: modelo canónico de 450000 pasos, título `Trained Agent`.
 
 Ambos usan la seed 301, muestran retorno acumulado y contienen 200 frames a 30 FPS (6.67 s). Los JSON laterales documentan fuente, SHA-256 y modo. Se verificaron los overlays en frames intermedios/finales y la decodificación completa con FFmpeg. Cuando `ffprobe` no está disponible, el notebook comprueba duración, FPS y conteo con ImageIO y ejecuta el FFmpeg distribuido por `imageio-ffmpeg` sobre todos los frames.
+
+## Alcance de seguridad y validación
+
+Los ZIP de SB3 contienen metadatos serializados; cargar un modelo equivale a confiar en su fuente. Este notebook carga exclusivamente artefactos generados en la corrida local o el modelo del repositorio revisado, y comprueba el checksum antes de evaluar el artefacto canónico. El checksum detecta diferencias de contenido, no certifica por sí solo una fuente desconocida.
+
+La versión histórica de PyTorch utilizada para reproducir esta corrida está afectada por [CVE-2025-32434](https://github.com/pytorch/pytorch/security/advisories/GHSA-53q9-r3pm-6pq6) al cargar checkpoints maliciosos. No se ofrece carga de archivos externos ni un servicio público. Este entorno reproducible debe reservarse a los artefactos propios/verificados; no se presenta como un entorno para modelos no confiables. Véase también la [política de seguridad de PyTorch](https://github.com/pytorch/pytorch/security/policy).
+
+La revisión local del código y artefactos se realizó durante el DWP. El addon `ai-diff-reviewer` no está instalado. La validación de Colab y el capítulo 6 siguen pendientes antes de considerar completa la entrega académica.
+
+## Revisión final local
+
+Se ejecutaron las 12 celdas de código desde un kernel nuevo y un directorio vacío, cambiando solo `CONFIG['profile']` a `smoke`: 5000 pasos, checkpoints, recarga, evaluación y MP4 correctos, sin sobrescribir la entrega. También se verificaron esquema/sintaxis del notebook, SHA-256 del modelo, igualdad de 200 acciones frente al checkpoint fuente, rechazo de aprendizaje en `InferenceSAC`, coherencia de CSV/metadatos y presencia de las tres figuras y dos videos. El harness del repositorio y `git diff --check` pasaron.
