@@ -18,3 +18,9 @@ Ejecutar el notebook en orden con ese intérprete. Solo la celda Colab instala p
 `HandReachDense-v3`: Dict `(63,15,15)`, 20 acciones, 24 qpos/qvel, control absoluto (`relative_control=False`). Reward = negativo de la norma global de los 15 errores cartesianos. Éxito: norma global estrictamente menor que 0.01 m; la métrica principal por episodio es `success_final`. Horizonte 50, 20 substeps, timestep 0.002 y 25 Hz.
 
 El probe valida imports, make/reset/step/render/close, shapes, física, reward/success, horizonte y objetivos de pulgar+dedo o configuración inicial; guarda `results/runtime_contract.json`. No se modifica XML, control, reward ni distribución de objetivos. Antes de full se requieren smoke, recarga, evaluación y MP4.
+
+## Agente y seeds
+
+PPO + MultiInputPolicy conserva el Dict, con actor/value `[256,256]`, ReLU, learning rate 3e-4, rollout 2048, batch 256, 10 epochs y clipping 0.2. La exploración es la política estocástica de PPO, sin action noise externo. Se elige CPU con un thread. La configuración ejecutable es `CONFIG` del notebook.
+
+Entrenamiento 42; baseline aleatorio 101–120 (20 episodios); tuning/selección 201–210; finales reservadas 1001–1010; diagnóstico runtime 5001–5100. `success_final` se fija antes de entrenar. Se conserva la estrategia global SAC/TD3/PPO y no se añade normalización, shaping ni extractores personalizados.
