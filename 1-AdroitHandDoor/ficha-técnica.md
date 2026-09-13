@@ -324,7 +324,7 @@ Los bonus son acumulativos. Por ejemplo, al superar `1.35 rad`, el paso obtiene 
 
 | Componente | Fórmula `v1` | Objetivo conceptual |
 | --- | --- | --- |
-| Distancia palma–manija | `+0.1 * ||p-h||₂` | históricamente pretendía acercar la mano |
+| Distancia palma–manija | `+0.1 * ‖p-h‖₂` | históricamente pretendía acercar la mano |
 | Apertura | `-0.1 * (θ-1.57)^2` | aproximar puerta a apertura máxima |
 | Penalización de velocidad | `-1e-5 * Σ(qvel²)` | limitar movimiento excesivo |
 | Bonus parcial 1 | `+2` si `θ > 0.2` | premiar inicio de apertura |

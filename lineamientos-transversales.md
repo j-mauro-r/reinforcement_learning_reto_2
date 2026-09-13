@@ -55,7 +55,7 @@ Cada carpeta será autónoma para efectos de ejecución, entrenamiento, evaluaci
 ### 2.1 Entornos obligatorios
 
 | Modelo | Entorno base | Recompensa |
-|---|---|---|
+| --- | --- | --- |
 | 1 | `AdroitHandDoor-v1` | La definida por el entorno, salvo justificación documentada |
 | 2 | `FetchReachDense-v4` | Densa |
 | 3 | `HandReachDense-v3` | Densa |
@@ -69,7 +69,7 @@ El reto completo deberá emplear **mínimo tres algoritmos distintos** de la lis
 Como hipótesis inicial de trabajo se recomienda:
 
 | Modelo | Algoritmo inicial | Razón de partida |
-|---|---|---|
+| --- | --- | --- |
 | AdroitHandDoor | SAC | Control continuo de alta dimensionalidad y buena exploración mediante política estocástica |
 | FetchReachDense | TD3 | Control continuo preciso y reducción del sesgo de sobreestimación |
 | HandReachDense | PPO | Alternativa estable para control continuo de alta dimensionalidad y cumplimiento del requisito de diversidad |

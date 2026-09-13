@@ -1,0 +1,12 @@
+{
+  "title": "HandReachDense-v3 \u2014 Trained PPO",
+  "source": "final_canonical",
+  "seed": 301,
+  "frames": 50,
+  "fps": 25,
+  "duration_seconds": 2.0,
+  "episode_return": -5.3914916839044364,
+  "final_goal_distance": 0.1101117981008097,
+  "success_final": false,
+  "video_sha256": "0e3b2dcbd26ab288344f298737f095b4a5c85b802a498e13baab555aa98e3ead"
+}
