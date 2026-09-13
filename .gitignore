@@ -24,3 +24,6 @@ venv/
 
 # Hand candidate runs and checkpoints (not canonical delivery)
 /3-HandReachDense/runs/
+
+# Archived unnormalized PPO runs
+/3-HandReachDense/results_archived_unnormalized_ppo/

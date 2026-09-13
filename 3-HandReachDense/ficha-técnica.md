@@ -49,7 +49,7 @@ La versión final de las dependencias deberá fijarse en el DWP después de vali
 | `observation` | `(63,)` |
 | `achieved_goal` | `(15,)` = XYZ de cinco puntas |
 | `desired_goal` | `(15,)` = XYZ objetivo de cinco puntas |
-| Reward Dense | `-||achieved_goal - desired_goal||₂` |
+| Reward Dense | `-‖achieved_goal - desired_goal‖₂` |
 | Mejor reward instantáneo | `0.0` |
 | Success threshold | norma 2 global `< 0.01 m` |
 | Señal de éxito | `info["is_success"]` |
