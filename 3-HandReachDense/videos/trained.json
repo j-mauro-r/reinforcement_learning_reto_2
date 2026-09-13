@@ -1,12 +1,12 @@
 {
-  "title": "HandReachDense-v3 \u2014 Trained PPO",
-  "source": "final_canonical",
+  "title": "HandReachDense-v3 \u2014 Trained Agent",
+  "source": "best_finetuned_model",
   "seed": 301,
   "frames": 50,
   "fps": 25,
   "duration_seconds": 2.0,
-  "episode_return": -5.3914916839044364,
-  "final_goal_distance": 0.1101117981008097,
+  "episode_return": -0.7649695271494984,
+  "final_goal_distance": 0.016800141112935898,
   "success_final": false,
-  "video_sha256": "0e3b2dcbd26ab288344f298737f095b4a5c85b802a498e13baab555aa98e3ead"
+  "video_sha256": "1364f2504623027d8db0ef82bafca7cccb0545b769418da7715c5843fb823d3c"
 }

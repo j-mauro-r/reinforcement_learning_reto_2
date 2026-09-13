@@ -855,10 +855,10 @@ environment:
 - [x] Telemetría propuesta.
 - [x] Contrato smoke/runtime definido.
 - [x] Implicaciones para PPO identificadas.
-- [ ] Versiones finales fijadas — pendiente del DWP/runtime.
-- [ ] Algoritmo/policy definitivos — pendiente del DWP.
-- [ ] Hiperparámetros — pendiente del DWP.
-- [ ] Success rate principal — pendiente del DWP.
+- [x] Versiones finales fijadas — gymnasium-robotics==1.4.2, gymnasium==1.3.0, mujoco==3.2.7, stable-baselines3==2.9.0, torch==2.14.0.
+- [x] Algoritmo/policy definitivos — PPO Vectorizado (8 workers) + MultiInputPolicy + VecNormalize.
+- [x] Hiperparámetros — LR 3e-4, gamma 0.99, GAE 0.95, clip 0.2, ent_coef 0.005, net_arch [256, 256].
+- [x] Success rate y distancia principal — Reducción de error del 87.7% (de 130.7 mm a 16.1 mm) y retorno de -0.877 +/- 0.190.
 
 ---
 

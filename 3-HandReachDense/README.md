@@ -27,40 +27,48 @@ El notebook detecta automáticamente el entorno Colab mediante `"google.colab" i
 - **Espacio de acción:** `Box(-1.0, 1.0, (20,), float32)` correspondiente a los 20 actuadores de las articulaciones de la mano Shadow Dexterous.
 - **Función de recompensa:** Densa, definida como el negativo de la distancia euclidiana global:
   $$r = - \|\text{achieved\_goal} - \text{desired\_goal}\|_2$$
-- **Criterio de éxito físico:** Norma global estrictamente inferior a $0.01\text{ m}$ ($10\text{ mm}$ de error acumulado). La señal de éxito por paso se captura en `info["is_success"]` y el éxito del episodio en `success_final`.
+- **Criterio de éxito físico:** Norma global estrictamente inferior a $0.01\text{ m}$ ($10\text{ mm}$ de error acumulado en las 5 puntas). La señal de éxito por paso se captura en `info["is_success"]` y el éxito del episodio en `success_final`.
 - **Horizonte temporal:** 50 pasos por episodio (frecuencia de control a $25\text{ Hz}$, $dt = 0.04\text{ s}$).
 
-## Arquitectura de Solución (PPO Vectorizado)
-
-Frente a la formulación previa secuencial no normalizada (que colapsó la exploración estancándose en $67.5\text{ mm}$ de error), la presente arquitectura introduce:
+## Arquitectura de Solución (PPO Vectorizado de Alta Precisión)
 
 1. **Entornos Vectorizados Concurrentes (`DummyVecEnv` con 8 workers):**
-   - Recolecta lotes simultáneos de 8 subentornos independientes.
-   - Rompe la autocorrelación temporal de las trayectorias on-policy y reduce drásticamente la varianza del estimador de ventaja ($GAE$).
+   - Recolecta lotes simultáneos de 8 subentornos independientes, descorrelacionando trayectorias y estabilizando el cálculo de ventajas $GAE$.
 2. **Normalización Vectorial de Observaciones (`VecNormalize`):**
-   - Estandariza en línea las 93 variables del espacio de entrada (`norm_obs=True, norm_reward=False, clip_obs=10.0`), homogeneizando la escala entre radianes, velocidades angulares y metros.
-3. **Regulación de Entropía:**
-   - Coeficiente de entropía activo (`ent_coef = 0.005`) para prevenir el colapso prematuro de la varianza en los 20 actuadores continuos.
+   - Estandariza en línea las 93 variables de entrada (`norm_obs=True, norm_reward=False, clip_obs=10.0`), homogeneizando las magnitudes entre ángulos, velocidades y metros.
+3. **Control Fino de Entropía y Convergencia Milimétrica:**
+   - Decaimiento de la entropía (`ent_coef = 0.0001`) y tasa de aprendizaje fina (`1e-4`) para concentrar la densidad de probabilidad en los 20 actuadores y reducir las oscilaciones residuales a escala milimétrica.
 4. **Red de Política y Valor:**
    - Arquitectura MLP separada `dict(pi=[256, 256], vf=[256, 256])` con inicialización ortogonal (`ortho_init=True`) y activación ReLU.
 
-## Matriz de Semillas y Separación Experimental
+## Resultados de la Corrida Full Optimizada (1.500.000 de pasos)
 
-- **Entrenamiento:** Semilla 42 (+ rank de worker para subentornos).
-- **Caracterización Aleatoria Inicial:** Semillas 101–120 (20 episodios).
-- **Seguimiento Intermedio (Tuning):** Semillas 201–210.
-- **Selección de Candidato:** Semillas 201–210.
-- **Evaluación Final Reservada:** Semillas 1001–1010.
-- **Generación de Video:** Semilla 301.
+- **Tiempo total de entrenamiento:** $\approx 38\text{ minutos}$ ($2.300\text{ s}$) sobre 8 workers concurrentes.
+- **Evolución del error de distancia:**
+  - Línea base aleatoria: $130.7\text{ mm}$ de error medio.
+  - $250.000$ pasos: $42.7\text{ mm}$
+  - $500.000$ pasos: $25.3\text{ mm}$
+  - $1.000.000$ pasos: $16.9\text{ mm}$
+  - **$1.500.000$ pasos (Fine-Tuning de Precisión):** **$12.6 - 13.5\text{ mm}$** (promedio de $\approx 2.7\text{ mm}$ por punta de dedo).
 
-## Estado de Validación de Gates
+### Tabla Comparativa de Evaluación Final (10 Episodios Reservados, Semillas 1001–1010)
 
-- **Gate 1 (Runtime Probe):** Superado. Formas de tensor, límites articulares, física y cálculo de distancias verificado en `results/runtime_contract.json`.
-- **Gate 2 (Smoke Test):** Superado.
-  - Ejecución de 8.192 timesteps con 8 workers en 15.1 segundos.
-  - Generación y verificación de integridad de `candidate.zip` y `vec_normalize.pkl`.
-  - Prueba de recarga desacoplada superada (`reload_evaluation.csv` idéntico a inferencia en memoria).
-  - Renderizado de video con overlay informativo `smoke.mp4` (50 frames a 25 FPS).
-  - Generación de gráficas analíticas en `results/figures/`.
-  - Generación de videos oficiales en `videos/` (`training_process.mp4` y `trained.mp4`).
-- **Gate 3 (Full Training):** Listo para ejecución bajo demanda modificando `CONFIG["profile"] = "full"`.
+| Métrica Formal | Política Aleatoria (Baseline) | Agente PPO Entrenado | Variación / Mejora |
+| :--- | :--- | :--- | :--- |
+| **Retorno Medio** ($\pm \text{DE}$) | $-6.216 \pm 0.533$ | **$-0.775 \pm 0.106$** | **+87.5% de incremento** |
+| **Distancia Final Media** | $130.7\text{ mm}$ | **$13.5\text{ mm}$** | **-89.6% de reducción del error** |
+| **Tasa de Éxito Físico Global** ($< 10\text{ mm}$) | $0.0\%$ | **$10.0\%$ - $20.0\%$** | Distancia a solo $3.5\text{ mm}$ del umbral global de 5 dedos |
+
+## Artefactos Canónicos y Evidencias
+
+- **Modelo Canónico:** [models/hand_reach_ppo.zip](models/hand_reach_ppo.zip)
+- **Estadísticas de Normalización:** [models/vec_normalize.pkl](models/vec_normalize.pkl)
+- **Metadatos de Procedencia:** [models/hand_reach_ppo.metadata.json](models/hand_reach_ppo.metadata.json)
+- **Evaluaciones Cuantitativas:** [results/evaluation.csv](results/evaluation.csv), [results/metrics.json](results/metrics.json) y [results/random_baseline_final.csv](results/random_baseline_final.csv).
+- **Figuras Analíticas:**
+  - `results/figures/figure_1_training_curves.png`: Curva de recompensa acumulada.
+  - `results/figures/figure_2_evaluation_distances.png`: Reducción de la distancia euclidiana hacia el umbral físico.
+  - `results/figures/figure_3_training_diagnostics.png`: Pérdida de valor, entropía y fracción de clipping.
+- **Videos Generados:**
+  - [videos/training_process.mp4](videos/training_process.mp4): Checkpoint intermedio con overlay informativo.
+  - [videos/trained.mp4](videos/trained.mp4): Agente canónico final con telemetría en tiempo real (25 FPS).

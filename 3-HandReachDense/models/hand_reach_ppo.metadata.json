@@ -1,0 +1,16 @@
+{
+  "algorithm": "PPO",
+  "environment_id": "HandReachDense-v3",
+  "model_sha256": "68b24556c1f5fc218aa1ac2013913d16798911f229acec7f440826a15fab2bb4",
+  "vec_normalize_sha256": "bc470eba1eaebab7567d57620580d14777338487999583d4e0a9d6bf1054ac48",
+  "total_timesteps": 1500000,
+  "training_seconds": 2300.0,
+  "device": "cpu",
+  "num_envs": 8,
+  "policy": "MultiInputPolicy",
+  "net_arch": [
+    256,
+    256
+  ],
+  "ent_coef": 0.0001
+}

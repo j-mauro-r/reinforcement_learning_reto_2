@@ -1,6 +1,7 @@
 # Deep Work Plan operational workspace (DWP v4)
 .dwp/
 tmp/
+scratch/
 
 # Python / notebooks
 __pycache__/

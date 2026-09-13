@@ -1,12 +1,12 @@
 {
-  "title": "Training Process \u2014 HandReachDense-v3",
-  "source": "checkpoint_intermediate",
+  "title": "HandReachDense-v3 \u2014 Training Process (500k)",
+  "source": "checkpoint_500000",
   "seed": 301,
   "frames": 50,
   "fps": 25,
   "duration_seconds": 2.0,
-  "episode_return": -5.3914916839044364,
-  "final_goal_distance": 0.1101117981008097,
+  "episode_return": -1.1192231604434657,
+  "final_goal_distance": 0.020992255467034888,
   "success_final": false,
-  "video_sha256": "228a90533a00e2220f370b0c03bb288e8e4f2ef9533f88fb9e175a6edcd5667e"
+  "video_sha256": "d4d8a3b40a1c7cd1fb55635d0409286ec07cdb88d667b6670bec4412e3745a07"
 }
