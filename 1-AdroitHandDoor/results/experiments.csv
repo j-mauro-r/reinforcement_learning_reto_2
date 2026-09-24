@@ -1,2 +1,0 @@
-run_id,change,seed,timesteps,artifact_timesteps,training_time_seconds,return_mean,return_std,success_rate,selected_checkpoint
-20260911T231624899082Z_full,baseline; selected saved checkpoint; no hyperparameter tuning,42,500000,450000,2820.0406645420007,1492.8436621628377,887.728981589451,0.8,1-AdroitHandDoor/runs/20260911T231624899082Z_full/checkpoints/20260911T231624899082Z_full_450000_steps.zip
