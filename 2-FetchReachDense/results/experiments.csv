@@ -1,2 +1,0 @@
-run_id,delta_vs_baseline,seed,timesteps,training_seconds,reward_mean,reward_std,success_final_rate,success_fraction_mean,final_distance_mean
-20260912T005116707634Z_full,none,42,100000,345.82092983399343,-0.8470509205628407,0.1514206664587485,1.0,0.968,0.014162046037264831
