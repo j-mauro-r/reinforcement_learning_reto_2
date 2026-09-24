@@ -1,0 +1,22 @@
+{
+  "training_seconds": 4068.6709648440005,
+  "evaluation_return_mean": -0.6123688521489535,
+  "evaluation_return_std": 0.22866957440138116,
+  "success_rate": 1.0,
+  "success_definition": "success_final",
+  "episodes": 10,
+  "std_ddof": 1,
+  "auxiliary": {
+    "success_any_rate": 1.0,
+    "success_fraction_mean": 0.9620000000000001,
+    "final_distance_mean": 0.008208047288675954
+  },
+  "random": {
+    "return_mean": -9.531852556770811,
+    "return_std": 3.1793532260132857,
+    "success_rate": 0.0,
+    "final_distance_mean": 0.2317757216698547
+  },
+  "run_id": "20260924T191409548432Z_full",
+  "model_sha256": "0753b10bcccb7af98bf4d86ce805339f236b952ea78db9813262e2d1a00d94c9"
+}
