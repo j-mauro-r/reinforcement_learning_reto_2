@@ -25,8 +25,8 @@
     "imageio": "2.37.4",
     "imageio-ffmpeg": "0.6.0"
   },
-  "execution_target": "local",
-  "python": "3.12.13",
+  "execution_target": "colab",
+  "python": "3.13.15",
   "gripper_invariance_pass": true,
   "reward_success_horizon_pass": true,
   "goal_sampling_pass": true,

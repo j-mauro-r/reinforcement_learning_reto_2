@@ -1,5 +1,5 @@
 {
-  "run_id": "20260912T005116707634Z_full",
+  "run_id": "20260924T191409548432Z_full",
   "profile": "full",
   "environment_id": "FetchReachDense-v4",
   "algorithm": "TD3",
@@ -34,6 +34,18 @@
       204,
       205
     ],
+    "selection_seeds": [
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210
+    ],
     "final_eval_seeds": [
       1001,
       1002,
@@ -51,6 +63,7 @@
       402
     ],
     "video_seed": 301,
+    "intermediate_timesteps": 50000,
     "video_fps": 25,
     "video_size": 480,
     "success_definition": "success_final",
@@ -99,11 +112,11 @@
     "imageio": "2.37.4",
     "imageio-ffmpeg": "0.6.0"
   },
-  "python": "3.12.13",
-  "hardware": "macOS-26.6.2-arm64-arm-64bit arm64",
+  "python": "3.13.15",
+  "hardware": "Linux-6.6.122+-x86_64-with-glibc2.39 x86_64",
   "device": "cpu",
-  "started_at": "2026-09-12T00:51:16.741195+00:00",
-  "ended_at": "2026-09-12T00:57:02.702314+00:00",
-  "training_seconds": 345.82092983399343,
-  "candidate_sha256": "e153eac9ad58ca1052aca026e8f4b550090a24e6d9659e41b3495da8946cd696"
+  "started_at": "2026-09-24T19:14:09.747184+00:00",
+  "ended_at": "2026-09-24T20:21:59.119143+00:00",
+  "training_seconds": 4068.6709648440005,
+  "candidate_sha256": "aa678d251da4d366dea49bf14339a2093e1ba61aa3d62c7ce9549fb123a6d3e1"
 }
