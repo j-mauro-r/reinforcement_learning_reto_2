@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-09-12T00:11:42.060397+00:00",
+  "captured_at": "2026-09-25T21:54:14.940691+00:00",
   "execution_target": "local",
   "environment_id": "AdroitHandDoor-v1",
   "env_spec": "EnvSpec(id='AdroitHandDoor-v1', entry_point='gymnasium_robotics.envs.adroit_hand.adroit_door:AdroitHandDoorEnv', reward_threshold=None, nondeterministic=False, max_episode_steps=200, order_enforce=True, disable_env_checker=False, kwargs={'reward_type': 'dense', 'render_mode': 'rgb_array'}, namespace=None, name='AdroitHandDoor', version=1, additional_wrappers=(), vector_entry_point=None)",
@@ -9,7 +9,13 @@
     "mujoco": "3.1.6",
     "stable-baselines3": "2.4.1",
     "torch": "2.5.1",
-    "numpy": "1.26.4"
+    "numpy": "1.26.4",
+    "ipykernel": "7.3.0",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "imageio": "2.37.4",
+    "imageio-ffmpeg": "0.6.0",
+    "pillow": "12.3.0"
   },
   "hardware": {
     "platform": "macOS-26.6.2-arm64-arm-64bit",

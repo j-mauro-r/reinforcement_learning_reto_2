@@ -1,5 +1,5 @@
 {
-  "training_time_seconds": 2820.0406645420007,
+  "training_time_seconds": 2899.399646209,
   "evaluation_return_mean": 1704.8105630673895,
   "evaluation_return_std": 1202.7343019243076,
   "success_rate": 0.7,
@@ -7,8 +7,8 @@
   "random_return_mean": -45.8377030000416,
   "random_return_std": 0.8431235523853732,
   "random_success_rate": 0.0,
-  "model_sha256": "e153ac1b165aab3805e1e1ba360048d3a2c0b4f0a536dc516eb8e16446f4523c",
-  "run_id": "20260911T231624899082Z_full",
+  "model_sha256": "5ee59e1af927252230ec73b3395c476a14fa5f6f6e0ac2367fa8e5d852783fef",
+  "run_id": "20260925T215416647610Z_full",
   "artifact_timesteps": 450000,
   "run_total_timesteps": 500000
 }
