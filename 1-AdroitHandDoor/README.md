@@ -14,9 +14,13 @@ python -m pip install gymnasium-robotics==1.3.0 gymnasium==1.0.0 mujoco==3.1.6 s
 
 Seleccionar `.venv` como kernel del notebook y ejecutar desde el principio. La celda `DEPENDENCIES` del notebook es la matriz autoritativa; el comando reproduce esa matriz. El notebook no instala paquetes en local. En macOS se usa el render nativo de MuJoCo, sin Xvfb. La configuración usa CPU y un thread de PyTorch para evitar sobrecostos en las redes pequeñas de SAC.
 
+Matriz local preservada (Mac): `gymnasium-robotics==1.3.0`, `gymnasium==1.0.0`, `mujoco==3.1.6`, `stable-baselines3==2.4.1`, `torch==2.5.1`, `numpy==1.26.4`, más `ipykernel`, `nbformat`, `nbclient`, `imageio`, `imageio-ffmpeg`, `pillow`.
+
 ## Google Colab
 
-Abrir el notebook en un runtime limpio y ejecutar desde la primera celda. La instalación ocurre en una única celda y utiliza EGL para el render. Las rutas se derivan de una sola raíz y el pipeline es el mismo. **Validación Colab pendiente**: las versiones indicadas solo han sido probadas localmente y todavía no constituyen pins finales validados en Colab.
+Abrir el notebook en un runtime limpio y ejecutar desde la primera celda. La instalación ocurre en una única celda y utiliza EGL para el render. Las rutas se derivan de una sola raíz y el pipeline es el mismo. En Colab, el notebook instala una matriz específica de runtime (núcleo RL + video) y evita reinstalar paquetes de infraestructura del propio notebook (`ipykernel`, `nbformat`, `nbclient`) para reducir cambios globales innecesarios del runtime.
+
+**Validación Colab pendiente**: las versiones indicadas en la matriz Colab se prepararon para compatibilidad con Python moderno de Colab, pero no se declaran validadas hasta ejecutar los gates en Colab real.
 
 ## Contrato y validación
 
